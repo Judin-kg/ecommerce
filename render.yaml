@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: my-node-app
+    env: node
+    plan: free
+    branch: main
+    buildCommand: "npm install"
+    startCommand: "node server.js"
+    autoDeploy: true
+    envVars:
+      - key: PORT
+        value: 10000
+      - key: MONGO_URI
+        value: your-mongo-uri-here
