@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Products</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/admin.css">
+</head>
+<body>
+    <%- include('../partials/header.ejs') %>
+    <div class="admin-container">
+        <div class="header-row">
+            <h2>Manage Products</h2>
+            <a href="/admin/products/add" class="btn">Add New Product</a>
+        </div>
+        <table class="products-table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Stock</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% products.forEach(product => { %>
+                    <tr>
+                        <td><%= product.name %></td>
+                        <td>$<%= product.price.toFixed(2) %></td>
+                        <td><%= product.stock %></td>
+                        <td>
+                            <a href="/admin/products/edit/<%= product._id %>" class="btn-small">Edit</a>
+                            <form action="/admin/products/delete/<%= product._id %>" method="POST" style="display:inline;">
+                                <button type="submit" class="btn-small btn-danger">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                <% }); %>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

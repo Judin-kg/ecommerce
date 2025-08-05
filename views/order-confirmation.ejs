@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Confirmation</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <style>
+        .confirmation-container {
+            max-width: 600px;
+            margin: 2em auto;
+            background: #fff;
+            padding: 2em;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .confirmation-container h2 {
+            color: #28a745;
+            font-size: 2em;
+            margin-bottom: 0.5em;
+        }
+
+        .confirmation-container p {
+            font-size: 1.2em;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <%- include('partials/header.ejs') %>
+    <div class="confirmation-container">
+        <h2>Thank You for Your Order!</h2>
+        <p>Your order #<%= order._id %> has been placed successfully.</p>
+        <p>You can view your order history in your profile (future feature).</p>
+        <a href="/" class="checkout-btn" style="width: auto; margin-top: 2em;">Continue Shopping</a>
+    </div>
+</body>
+</html>

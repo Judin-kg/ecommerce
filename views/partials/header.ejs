@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My eCommerce Store</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .mobile-menu {
+            transition: all 0.3s ease-in-out;
+            max-height: 0;
+            overflow: hidden;
+        }
+        .mobile-menu.open {
+            max-height: 500px;
+        }
+        .cart-icon::after {
+            content: attr(data-count);
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: #ef4444;
+            color: white;
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <header class="bg-gradient-to-r from-gray-900 to-gray-800 text-white shadow-lg sticky top-0 z-50">
+        <nav class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center space-x-4">
+                <!-- Mobile menu button -->
+                <button id="mobile-menu-button" class="md:hidden text-white focus:outline-none">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+                
+                <!-- Logo -->
+                <a href="/" class="logo text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-500 hover:from-purple-500 hover:to-blue-400 transition-all duration-300">
+                    My eCommerce Store
+                </a>
+            </div>
+
+            <!-- Desktop Navigation -->
+            <ul class="hidden md:flex items-center space-x-6">
+                <li>
+                    <a href="/" class="hover:text-blue-300 transition-colors duration-200 flex items-center space-x-1">
+                        <i class="fas fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/products" class="hover:text-blue-300 transition-colors duration-200 flex items-center space-x-1">
+                        <i class="fas fa-box-open"></i>
+                        <span>Products</span>
+                    </a>
+                </li>
+                <li class="relative">
+                    <a href="/cart" class="hover:text-blue-300 transition-colors duration-200 flex items-center space-x-1 cart-icon" data-count="0">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="hidden md:inline">Cart</span>
+                    </a>
+                </li>
+                <!-- Dynamic content - will be handled by your backend -->
+                <li id="admin-link" class="hidden">
+                    <a href="/admin/dashboard" class="hover:text-blue-300 transition-colors duration-200 flex items-center space-x-1">
+                        <i class="fas fa-user-shield"></i>
+                        <span>Admin</span>
+                    </a>
+                </li>
+                <li id="logout-link" class="hidden">
+                    <a href="/logout" class="hover:text-blue-300 transition-colors duration-200 flex items-center space-x-1">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span>Logout</span>
+                    </a>
+                </li>
+                <li id="login-link">
+                    <a href="/login" class="hover:text-blue-300 transition-colors duration-200 flex items-center space-x-1">
+                        <i class="fas fa-sign-in-alt"></i>
+                        <span>Login</span>
+                    </a>
+                </li>
+                <li id="register-link">
+                    <a href="/register" class="bg-blue-600 hover:bg-blue-700 px-3 py-1 rounded-md transition-colors duration-200 flex items-center space-x-1">
+                        <i class="fas fa-user-plus"></i>
+                        <span>Register</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Mobile Navigation -->
+        <div id="mobile-menu" class="mobile-menu md:hidden bg-gray-800 w-full">
+            <ul class="px-4 py-2 space-y-3">
+                <li>
+                    <a href="/" class="block hover:bg-gray-700 px-3 py-2 rounded transition-colors duration-200 flex items-center space-x-2">
+                        <i class="fas fa-home w-5 text-center"></i>
+                        <span>Home</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/products" class="block hover:bg-gray-700 px-3 py-2 rounded transition-colors duration-200 flex items-center space-x-2">
+                        <i class="fas fa-box-open w-5 text-center"></i>
+                        <span>Products</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/cart" class="block hover:bg-gray-700 px-3 py-2 rounded transition-colors duration-200 flex items-center space-x-2 cart-icon" data-count="0">
+                        <i class="fas fa-shopping-cart w-5 text-center"></i>
+                        <span>Cart</span>
+                    </a>
+                </li>
+                <!-- Dynamic content - will be handled by your backend -->
+                <li id="mobile-admin-link" class="hidden">
+                    <a href="/admin/dashboard" class="block hover:bg-gray-700 px-3 py-2 rounded transition-colors duration-200 flex items-center space-x-2">
+                        <i class="fas fa-user-shield w-5 text-center"></i>
+                        <span>Admin</span>
+                    </a>
+                </li>
+                <li id="mobile-logout-link" class="hidden">
+                    <a href="/logout" class="block hover:bg-gray-700 px-3 py-2 rounded transition-colors duration-200 flex items-center space-x-2">
+                        <i class="fas fa-sign-out-alt w-5 text-center"></i>
+                        <span>Logout</span>
+                    </a>
+                </li>
+                <li id="mobile-login-link">
+                    <a href="/login" class="block hover:bg-gray-700 px-3 py-2 rounded transition-colors duration-200 flex items-center space-x-2">
+                        <i class="fas fa-sign-in-alt w-5 text-center"></i>
+                        <span>Login</span>
+                    </a>
+                </li>
+                <li id="mobile-register-link">
+                    <a href="/register" class="block bg-blue-600 hover:bg-blue-700 px-3 py-2 rounded transition-colors duration-200 flex items-center space-x-2">
+                        <i class="fas fa-user-plus w-5 text-center"></i>
+                        <span>Register</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </header>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('open');
+        });
+
+        // Simulate user login/logout for demo purposes
+        // In your actual implementation, this will be handled by your backend
+        function simulateLogin(isAdmin = false) {
+            document.getElementById('login-link').classList.add('hidden');
+            document.getElementById('register-link').classList.add('hidden');
+            document.getElementById('mobile-login-link').classList.add('hidden');
+            document.getElementById('mobile-register-link').classList.add('hidden');
+            
+            document.getElementById('logout-link').classList.remove('hidden');
+            document.getElementById('mobile-logout-link').classList.remove('hidden');
+            
+            if(isAdmin) {
+                document.getElementById('admin-link').classList.remove('hidden');
+                document.getElementById('mobile-admin-link').classList.remove('hidden');
+            }
+        }
+
+        function simulateLogout() {
+            document.getElementById('login-link').classList.remove('hidden');
+            document.getElementById('register-link').classList.remove('hidden');
+            document.getElementById('mobile-login-link').classList.remove('hidden');
+            document.getElementById('mobile-register-link').classList.remove('hidden');
+            
+            document.getElementById('logout-link').classList.add('hidden');
+            document.getElementById('mobile-logout-link').classList.add('hidden');
+            document.getElementById('admin-link').classList.add('hidden');
+            document.getElementById('mobile-admin-link').classList.add('hidden');
+        }
+
+        // For demo purposes - you can remove this
+        // Simulate a logged-in user (change to true to simulate admin)
+        // simulateLogin(false);
+    </script>
+</body>
+</html>
